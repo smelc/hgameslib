@@ -1,4 +1,4 @@
-package com.hgames.lib;
+package com.hgames.lib.collection.list;
 
 import java.util.ArrayList;
 import java.util.Iterator;
