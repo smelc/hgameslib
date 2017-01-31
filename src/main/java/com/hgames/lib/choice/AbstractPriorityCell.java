@@ -1,7 +1,16 @@
 package com.hgames.lib.choice;
 
 /**
- * A common super type for priority cells.
+ * A common super type for priority cells. The usual coding pattern:
+ * 
+ * <pre>
+ * PriorityCell<T> cell = PriorityCell.<T> createEmpty();
+ * while (iterator.hasNext()) {
+ * 	final T next = iterator.next();
+ * 	cell.union(next, priorityOf(next));
+ * }
+ * final T best = cell.get();
+ * </pre>
  * 
  * @author smelC
  * 
