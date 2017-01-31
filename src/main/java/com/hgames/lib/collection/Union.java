@@ -8,6 +8,8 @@ import java.util.Collection;
  * is a waste of memory when you're only going to iterate over the collections.
  * 
  * @author smelC
+ * @param <T>
+ *            The type of elements.
  */
 public interface Union<T> extends Iterable<T> {
 

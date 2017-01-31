@@ -11,6 +11,11 @@ public final class ByRef<T> {
 
 	protected /* @Nullable */ T ref;
 
+	/**
+	 * A fresh instance.
+	 * 
+	 * @param t
+	 */
 	public ByRef(/* @Nullable */ T t) {
 		this.ref = t;
 	}

@@ -14,7 +14,12 @@ import java.util.Queue;
  */
 public class Lists {
 
-	// FIXME CH Add 'useEgalEgal' parameter
+	/**
+	 * @param l
+	 * @param elem
+	 * @return {@code true} if {@code l} is empty or all its elements are equal
+	 *         to {@code elem}all its elements are equal to {@code elem}..
+	 */
 	public static <T> boolean containsOnly(List<T> l, T elem) {
 		final int sz = l.size();
 		if (l instanceof LinkedList && 4 < sz) {
@@ -42,6 +47,10 @@ public class Lists {
 		return result;
 	}
 
+	/**
+	 * @param it
+	 * @return An {@link ArrayList} containing {@code it}'s elements.
+	 */
 	public static <T> ArrayList<T> newArrayList(Iterator<? extends T> it) {
 		final ArrayList<T> result = new ArrayList<T>();
 		while (it.hasNext())
@@ -83,6 +92,12 @@ public class Lists {
 		};
 	}
 
+	/**
+	 * <b>Destroys {@code q}.</b>
+	 * 
+	 * @param q
+	 * @return A copy of {@code q}.
+	 */
 	public static <T> ArrayList<T> toArrayList(Queue<T> q) {
 		final ArrayList<T> result = new ArrayList<T>(q.size());
 		while (!q.isEmpty())
@@ -90,6 +105,10 @@ public class Lists {
 		return result;
 	}
 
+	/**
+	 * @param q
+	 * @return A copy of {@code q}.
+	 */
 	public static <T> ArrayList<T> toArrayList(T[] q) {
 		final ArrayList<T> result = new ArrayList<T>(q.length);
 		for (int i = 0; i < q.length; i++)
@@ -97,6 +116,10 @@ public class Lists {
 		return result;
 	}
 
+	/**
+	 * @param l
+	 * @return A copy of {@code l}.
+	 */
 	public static int[] toArray(List<Integer> l) {
 		final int[] result = new int[l.size()];
 		int j = 0;
@@ -105,6 +128,11 @@ public class Lists {
 		return result;
 	}
 
+	/**
+	 * @param elem
+	 * @param size
+	 * @return The list {@code [elem, ... elem]} of size {@code size}.
+	 */
 	public static <E> ArrayList<E> uniformArrayList(E elem, int size) {
 		final ArrayList<E> result = new ArrayList<E>(size);
 		for (int i = 0; i < size; i++)

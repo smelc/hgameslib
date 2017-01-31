@@ -37,6 +37,9 @@ public class DoublePriorityCell<T> extends AbstractPriorityCell<T> {
 		this.priority = priority;
 	}
 
+	/**
+	 * @return A fresh empty cell.
+	 */
 	public static <T> DoublePriorityCell<T> createEmpty() {
 		return new DoublePriorityCell<T>(null, 0);
 	}
