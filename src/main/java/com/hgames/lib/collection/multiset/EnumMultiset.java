@@ -12,6 +12,13 @@ import java.util.Set;
  * keep track of its frequency in a smart manner. It is specialized for
  * enumerations.
  * 
+ * <p>
+ * This class can be used to represent stack of items. In
+ * {@code Dungeon Mercenary}, this class is used to represent stacks of potions,
+ * bombs, and runics: there is an instance of this class for potions (the enum
+ * covering the kind of potions), an instance for bombs, etc.
+ * </p>
+ * 
  * @author smelC
  * 
  * @param <T>
@@ -57,6 +64,17 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 	 */
 	public Set<T> keySet() {
 		return map.keySet();
+	}
+
+	/**
+	 * Adds {@code t} {@code count} times.
+	 * 
+	 * @param t
+	 * @param count
+	 */
+	public void multiAdd(T t, int count) {
+		for (int i = 0; i < count; i++)
+			add(t);
 	}
 
 	@Override
@@ -178,10 +196,8 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		final Integer count = map.get(o);
 		if (count == null)
 			return false;
-		if (count == 0) {
-			assert false;
+		if (count == 0)
 			return false;
-		}
 		final Integer less = count - 1;
 		if (less == 0)
 			map.remove(o);

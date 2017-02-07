@@ -230,7 +230,7 @@ public class Unions {
 	}
 
 	/**
-	 * Adds {@code u}'s element to {@code c}.
+	 * Adds {@code u}'s elements to {@code c}.
 	 * 
 	 * @param u
 	 * @param c
@@ -238,5 +238,20 @@ public class Unions {
 	public static <T> void pourInto(Union<T> u, Collection<T> c) {
 		for (T t : u)
 			c.add(t);
+	}
+
+	/**
+	 * Adds {@code u}'s elements to {@code c}, exception {@code exception}.
+	 * 
+	 * @param u
+	 * @param exception
+	 * @param useEqualEqual
+	 * @param c
+	 */
+	public static <T> void pourIntoExcept(Union<T> u, T exception, boolean useEqualEqual, Collection<T> c) {
+		for (T t : u) {
+			if (!com.hgames.lib.Objects.equals(t, exception, useEqualEqual))
+				c.add(t);
+		}
 	}
 }
