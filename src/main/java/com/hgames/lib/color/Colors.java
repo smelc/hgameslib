@@ -1,7 +1,7 @@
 package com.hgames.lib.color;
 
 /**
- * Utility methods about {@link IColor}.
+ * Utility constants and methods about {@link IColor}.
  * 
  * @author smelC
  */
