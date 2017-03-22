@@ -1,6 +1,7 @@
 package com.hgames.lib.collection.list;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -129,6 +130,23 @@ public class Lists {
 	}
 
 	/**
+	 * @param l
+	 * @param toRemove
+	 *            The indexes to remove in {@code l}.
+	 * @return The number of elements removed.
+	 */
+	public static int remove(List<?> l, /* @Nullable */ BitSet toRemove) {
+		if (toRemove == null)
+			return 0;
+		int result = 0;
+		for (int i = toRemove.nextSetBit(0); i >= 0; i = toRemove.nextSetBit(i + 1)) {
+			l.remove(i - result);
+			result++;
+		}
+		return result;
+	}
+
+	/**
 	 * @param elem
 	 * @param size
 	 * @return The list {@code [elem, ... elem]} of size {@code size}.
@@ -140,4 +158,22 @@ public class Lists {
 		return result;
 	}
 
+	/**
+	 * Some tests.
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		final List<Integer> l = new ArrayList<Integer>();
+		l.add(0);
+		l.add(1);
+		l.add(2);
+		l.add(3);
+		System.out.println(l.toString());
+		final BitSet toRemove = new BitSet();
+		toRemove.set(1);
+		toRemove.set(3);
+		remove(l, toRemove);
+		System.out.println(l.toString());
+	}
 }
