@@ -2,11 +2,14 @@ package com.hgames.lib.collection.list;
 
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Queue;
+
+import com.hgames.lib.GwtIncompatible;
 
 /**
  * Utility methods about {@link List}.
@@ -135,11 +138,29 @@ public class Lists {
 	 *            The indexes to remove in {@code l}.
 	 * @return The number of elements removed.
 	 */
+	@GwtIncompatible // Replug main at the end when this annotation is removed
 	public static int remove(List<?> l, /* @Nullable */ BitSet toRemove) {
 		if (toRemove == null)
 			return 0;
 		int result = 0;
 		for (int i = toRemove.nextSetBit(0); i >= 0; i = toRemove.nextSetBit(i + 1)) {
+			l.remove(i - result);
+			result++;
+		}
+		return result;
+	}
+
+	/**
+	 * @param l
+	 * @param toRemove
+	 *            The indexes to remove in {@code l}.
+	 * @return The number of elements removed.
+	 */
+	public static int removeByIndexes(List<?> l, /* @Nullable */ Collection<Integer> toRemove) {
+		if (toRemove == null)
+			return 0;
+		int result = 0;
+		for (Integer i : toRemove) {
 			l.remove(i - result);
 			result++;
 		}
@@ -158,22 +179,22 @@ public class Lists {
 		return result;
 	}
 
-	/**
-	 * Some tests.
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		final List<Integer> l = new ArrayList<Integer>();
-		l.add(0);
-		l.add(1);
-		l.add(2);
-		l.add(3);
-		System.out.println(l.toString());
-		final BitSet toRemove = new BitSet();
-		toRemove.set(1);
-		toRemove.set(3);
-		remove(l, toRemove);
-		System.out.println(l.toString());
-	}
+	// /**
+	// * Some tests.
+	// *
+	// * @param args
+	// */
+	// public static void main(String[] args) {
+	// final List<Integer> l = new ArrayList<Integer>();
+	// l.add(0);
+	// l.add(1);
+	// l.add(2);
+	// l.add(3);
+	// System.out.println(l.toString());
+	// final BitSet toRemove = new BitSet();
+	// toRemove.set(1);
+	// toRemove.set(3);
+	// remove(l, toRemove);
+	// System.out.println(l.toString());
+	// }
 }

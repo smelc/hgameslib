@@ -88,12 +88,9 @@ public final class ImmutableIColor implements IColor {
 			final int r = color.getRed();
 			final int g = color.getGreen();
 			final int b = color.getBlue();
-			decrease = Math.min(decrease, r);
-			decrease = Math.min(decrease, g);
-			decrease = Math.min(decrease, b);
-			assert 0 <= r - decrease;
-			assert 0 <= g - decrease;
-			assert 0 <= b - decrease;
+			decrease = r == 0 ? decrease : Math.min(decrease, r);
+			decrease = g == 0 ? decrease : Math.min(decrease, g);
+			decrease = b == 0 ? decrease : Math.min(decrease, b);
 			return new ImmutableIColor(r - decrease, g - decrease, b - decrease, color.getAlpha());
 		}
 	}
