@@ -8,8 +8,9 @@ import java.util.List;
  * An immutable implementation of {@link IColor}.
  * 
  * @author smelC
+ * @see MutableIColor
  */
-public final class ImmutableIColor implements IColor {
+public final class ImmutableIColor extends SkeletalColor {
 
 	protected final int red;
 	protected final int green;
@@ -264,21 +265,6 @@ public final class ImmutableIColor implements IColor {
 	@Override
 	public int getAlpha() {
 		return alpha;
-	}
-
-	@Override
-	public String toString() {
-		final StringBuilder result = new StringBuilder();
-		result.append(red);
-		result.append(',');
-		result.append(green);
-		result.append(',');
-		result.append(blue);
-		if (0 < alpha) {
-			result.append(',');
-			result.append(alpha);
-		}
-		return result.toString();
 	}
 
 }
