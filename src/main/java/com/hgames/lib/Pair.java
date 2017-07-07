@@ -31,6 +31,20 @@ public class Pair<T, U> implements Serializable {
 	}
 
 	/**
+	 * @return The left (first) element.
+	 */
+	public T getFst() {
+		return fst;
+	}
+
+	/**
+	 * @return The right (second) element.
+	 */
+	public U getSnd() {
+		return snd;
+	}
+
+	/**
 	 * @param t
 	 * @param u
 	 * @return A fresh pair {@code (t, u)}.
