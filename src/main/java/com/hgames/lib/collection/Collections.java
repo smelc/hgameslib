@@ -22,4 +22,14 @@ public class Collections {
 		return false;
 	}
 
+	/**
+	 * @param c1
+	 * @param c2
+	 * @return true if {@code c1} and {@code c2} are equivalent according to
+	 *         {@link Collection#containsAll(Collection)}.
+	 */
+	public static <T> boolean equivalent(Collection<T> c1, Collection<T> c2) {
+		return c1.containsAll(c2) && c2.containsAll(c1);
+	}
+
 }

@@ -51,8 +51,18 @@ public final class ImmutableIColor extends SkeletalColor {
 	}
 
 	/**
+	 * @param r
+	 * @param g
+	 * @param b
+	 * @return A fresh opaque color.
+	 */
+	public static IColor newOpaque(int r, int g, int b) {
+		return new ImmutableIColor(r, g, b, 255);
+	}
+
+	/**
 	 * @param i
-	 * @return A fresh uniform color.
+	 * @return A fresh uniform opaque color.
 	 */
 	public static IColor newUniformOpaque(int i) {
 		return new ImmutableIColor(i, i, i, 255);
