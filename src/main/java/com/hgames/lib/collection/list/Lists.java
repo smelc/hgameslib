@@ -156,6 +156,23 @@ public class Lists {
 	 *            The indexes to remove in {@code l}.
 	 * @return The number of elements removed.
 	 */
+	public static int removeByIndexes(List<?> l, /* @Nullable */ BitSet toRemove) {
+		if (toRemove == null)
+			return 0;
+		int result = 0;
+		for (int i = toRemove.nextSetBit(0); i >= 0; i = toRemove.nextSetBit(i + 1)) {
+			l.remove(i - result);
+			result++;
+		}
+		return result;
+	}
+
+	/**
+	 * @param l
+	 * @param toRemove
+	 *            The indexes to remove in {@code l}.
+	 * @return The number of elements removed.
+	 */
 	public static int removeByIndexes(List<?> l, /* @Nullable */ Collection<Integer> toRemove) {
 		if (toRemove == null)
 			return 0;
