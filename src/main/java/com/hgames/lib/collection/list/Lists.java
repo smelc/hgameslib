@@ -97,6 +97,19 @@ public class Lists {
 	}
 
 	/**
+	 * @param elem
+	 * @param size
+	 * @return The list {@code [elem, ... elem]} of size {@code size}.
+	 */
+	// FIXME Rename me into newUniformArrayList
+	public static <E> ArrayList<E> uniformArrayList(E elem, int size) {
+		final ArrayList<E> result = new ArrayList<E>(size);
+		for (int i = 0; i < size; i++)
+			result.add(elem);
+		return result;
+	}
+
+	/**
 	 * <b>Destroys {@code q}.</b>
 	 * 
 	 * @param q
@@ -183,35 +196,4 @@ public class Lists {
 		}
 		return result;
 	}
-
-	/**
-	 * @param elem
-	 * @param size
-	 * @return The list {@code [elem, ... elem]} of size {@code size}.
-	 */
-	public static <E> ArrayList<E> uniformArrayList(E elem, int size) {
-		final ArrayList<E> result = new ArrayList<E>(size);
-		for (int i = 0; i < size; i++)
-			result.add(elem);
-		return result;
-	}
-
-	// /**
-	// * Some tests.
-	// *
-	// * @param args
-	// */
-	// public static void main(String[] args) {
-	// final List<Integer> l = new ArrayList<Integer>();
-	// l.add(0);
-	// l.add(1);
-	// l.add(2);
-	// l.add(3);
-	// System.out.println(l.toString());
-	// final BitSet toRemove = new BitSet();
-	// toRemove.set(1);
-	// toRemove.set(3);
-	// remove(l, toRemove);
-	// System.out.println(l.toString());
-	// }
 }
