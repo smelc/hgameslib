@@ -42,6 +42,17 @@ public class Lists {
 	}
 
 	/**
+	 * @param it
+	 * @return An {@link ArrayList} containing {@code it}'s elements.
+	 */
+	public static <T> ArrayList<T> newArrayList(Iterator<? extends T> it) {
+		final ArrayList<T> result = new ArrayList<T>();
+		while (it.hasNext())
+			result.add(it.next());
+		return result;
+	}
+
+	/**
 	 * @param t
 	 * @return An {@link ArrayList} containing solely {@code t}.
 	 */
@@ -52,13 +63,14 @@ public class Lists {
 	}
 
 	/**
-	 * @param it
-	 * @return An {@link ArrayList} containing {@code it}'s elements.
+	 * @param elem
+	 * @param size
+	 * @return The list {@code [elem, ... elem]} of size {@code size}.
 	 */
-	public static <T> ArrayList<T> newArrayList(Iterator<? extends T> it) {
-		final ArrayList<T> result = new ArrayList<T>();
-		while (it.hasNext())
-			result.add(it.next());
+	public static <E> ArrayList<E> newUniformArrayList(E elem, int size) {
+		final ArrayList<E> result = new ArrayList<E>(size);
+		for (int i = 0; i < size; i++)
+			result.add(elem);
 		return result;
 	}
 
@@ -94,19 +106,6 @@ public class Lists {
 				list.remove(cur);
 			}
 		};
-	}
-
-	/**
-	 * @param elem
-	 * @param size
-	 * @return The list {@code [elem, ... elem]} of size {@code size}.
-	 */
-	// FIXME Rename me into newUniformArrayList
-	public static <E> ArrayList<E> uniformArrayList(E elem, int size) {
-		final ArrayList<E> result = new ArrayList<E>(size);
-		for (int i = 0; i < size; i++)
-			result.add(elem);
-		return result;
 	}
 
 	/**
