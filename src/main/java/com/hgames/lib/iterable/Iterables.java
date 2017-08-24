@@ -1,4 +1,4 @@
-package com.hgames.lib.collection.iterable;
+package com.hgames.lib.iterable;
 
 import java.util.Iterator;
 
