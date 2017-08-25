@@ -55,4 +55,29 @@ public interface ILogger {
 	 */
 	public void errLog(String tag, String s, /* @Nullable */ Throwable t);
 
+	/**
+	 * @return Whether {@link #debugLog(String, String)} does something. It
+	 *         means it's worth crafting messages for it.
+	 */
+	public boolean isDebugEnabled();
+
+	/**
+	 * @return Whether {@link #infoLog(String, String)} does something. It means
+	 *         it's worth crafting messages for it.
+	 */
+	public boolean isInfoEnabled();
+
+	/**
+	 * @return Whether {@link #warnLog(String, String)} does something. It means
+	 *         it's worth crafting messages for it.
+	 */
+	public boolean isWarnEnabled();
+
+	/**
+	 * @return Whether {@link #errLog(String, String)} and
+	 *         {@link #errLog(String, String, Throwable)} do something. It means
+	 *         it's worth crafting messages for it.
+	 */
+	public boolean isErrEnabled();
+
 }
