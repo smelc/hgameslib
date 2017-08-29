@@ -32,6 +32,13 @@ public class Stopwatch {
 		this.start = System.currentTimeMillis();
 	}
 
+	/**
+	 * Prints this watch's duration to {@link System#out}.
+	 */
+	public void print() {
+		System.out.println(System.currentTimeMillis() - start + "ms");
+	}
+
 	@Override
 	public String toString() {
 		return getClass().getSimpleName() + " started at " + start;
