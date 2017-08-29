@@ -15,6 +15,9 @@ public class SystemLogger implements ILogger {
 	protected final boolean warn;
 	protected final boolean err;
 
+	/** A logger that does nothing. */
+	public static final SystemLogger NOP = new SystemLogger(false, false, false, false);
+
 	/**
 	 * @param debug
 	 *            Whether debug logging is enabled.
@@ -94,5 +97,10 @@ public class SystemLogger implements ILogger {
 
 	protected void log(PrintStream stream, String tag, String s) {
 		stream.println(tag == null ? "" : (tag + ": ") + (s == null ? "null" : s));
+	}
+
+	@Override
+	public String toString() {
+		return "debug=" + debug + " info=" + info + " warn=" + warn + " err=" + err;
 	}
 }
