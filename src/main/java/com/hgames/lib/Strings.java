@@ -34,4 +34,12 @@ public class Strings {
 		}
 	}
 
+	/**
+	 * @param c
+	 * @return The plural suffix for an English noun
+	 */
+	public static String plural(int c) {
+		return c == 1 ? "" : "s";
+	}
+
 }
