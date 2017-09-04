@@ -38,4 +38,23 @@ public class Arrays {
 		return false;
 	}
 
+	/**
+	 * @param array
+	 * @param x
+	 * @param y
+	 * @return The value at {@code array[x][y]} if valid, or null.
+	 */
+	public static <T> /* @Nullable */ T getIfValid(/* @Nullable */ T[][] array, int x, int y) {
+		if (array == null)
+			return null;
+		if (array.length <= x)
+			return null;
+		final T[] ts = array[x];
+		if (ts == null)
+			return null;
+		if (ts.length <= y)
+			return null;
+		return ts[y];
+	}
+
 }
