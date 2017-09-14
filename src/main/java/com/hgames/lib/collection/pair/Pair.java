@@ -1,4 +1,4 @@
-package com.hgames.lib;
+package com.hgames.lib.collection.pair;
 
 import java.io.Serializable;
 
@@ -81,7 +81,7 @@ public class Pair<T, U> implements Serializable {
 	 * @return A fresh pair {@code (t, u)}.
 	 */
 	public static <T, U> Pair<T, U> of(T t, U u) {
-		return new Pair<>(t, u);
+		return new Pair<T, U>(t, u);
 	}
 
 	@Override
