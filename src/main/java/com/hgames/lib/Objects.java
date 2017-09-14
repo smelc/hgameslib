@@ -8,6 +8,18 @@ package com.hgames.lib;
 public class Objects {
 
 	/**
+	 * @param obj
+	 * @return {@code obj} if not null.
+	 * @throws NullPointerException
+	 *             If {@code obj} is null.
+	 */
+	public static <T> T checkNotNull(T obj) {
+		if (obj == null)
+			throw new NullPointerException();
+		return obj;
+	}
+
+	/**
 	 * @param o1
 	 * @param o2
 	 * @param useEqualEqual

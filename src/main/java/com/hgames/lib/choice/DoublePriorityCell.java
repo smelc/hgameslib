@@ -45,6 +45,19 @@ public class DoublePriorityCell<T> extends AbstractPriorityCell<T> {
 	}
 
 	/**
+	 * @return A fresh empty cell whose priority is inverted, i.e. the best cell
+	 *         will be the one whose priority is the biggest one.
+	 */
+	public static <T> DoublePriorityCell<T> createEmptyInverted() {
+		return new DoublePriorityCell<T>(null, 0) {
+			@Override
+			protected boolean better(double p1, double p2) {
+				return p2 < p1;
+			}
+		};
+	}
+
+	/**
 	 * Sets {@code t} in {@code this} if {@code this} is uninitialized or if
 	 * {@code p} is stricly smaller than the current object's priority.
 	 * 
@@ -52,12 +65,20 @@ public class DoublePriorityCell<T> extends AbstractPriorityCell<T> {
 	 * @param p
 	 */
 	public void union(T t, double p) {
-		checkPriority(p);
-
-		if (object == null || p < priority) {
+		if (object == null || better(p, priority)) {
 			object = t;
 			priority = p;
 		}
+	}
+
+	/**
+	 * @param p1
+	 * @param p2
+	 * @return true if p1 is better than p2, which is usually implemented by
+	 *         less than.
+	 */
+	protected boolean better(double p1, double p2) {
+		return p1 < p2;
 	}
 
 	/**
