@@ -3,7 +3,10 @@ package com.hgames.lib.iterator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Set;
+
+import com.hgames.lib.Predicate;
 
 /**
  * Utility methods about {@link Iterator}s.
@@ -11,6 +14,52 @@ import java.util.Set;
  * @author smelC
  */
 public class Iterators {
+
+	/**
+	 * @param it
+	 *            An iterator that shouldn't return null.
+	 * @param filter
+	 * @return {@code it} filtered by {@code filter}.
+	 */
+	public static <T> Iterator<T> filter(final Iterator<T> it, final Predicate<T> filter) {
+		return new Iterator<T>() {
+
+			private T next;
+
+			@Override
+			public boolean hasNext() {
+				while (it.hasNext()) {
+					next = it.next();
+					if (filter.apply(next))
+						return true;
+				}
+				return false;
+			}
+
+			@Override
+			public T next() {
+				if (next == null) {
+					while (it.hasNext()) {
+						next = it.next();
+						if (filter.apply(next)) {
+							next = null;
+							return next;
+						}
+					}
+					throw new NoSuchElementException();
+				} else {
+					final T result = next;
+					next = null;
+					return result;
+				}
+			}
+
+			@Override
+			public void remove() {
+				it.remove();
+			}
+		};
+	}
 
 	/**
 	 * @param it

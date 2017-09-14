@@ -53,6 +53,18 @@ public class Lists {
 	}
 
 	/**
+	 * @param t1
+	 * @param t2
+	 * @return The list [t1, t2].
+	 */
+	public static <T> ArrayList<T> newArrayList(T t1, T t2) {
+		final ArrayList<T> result = new ArrayList<T>(2);
+		result.add(t1);
+		result.add(t2);
+		return result;
+	}
+
+	/**
 	 * @param t
 	 * @return An {@link ArrayList} containing solely {@code t}.
 	 */
