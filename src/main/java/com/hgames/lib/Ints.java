@@ -29,4 +29,20 @@ public class Ints {
 		return lowerBound <= i && i <= upperBound;
 	}
 
+	/**
+	 * @param i
+	 * @return Whether {@code i} is even.
+	 */
+	public static boolean isEven(int i) {
+		return i % 2 == 0;
+	}
+
+	/**
+	 * @param i
+	 * @return Whether {@code i} is odd.
+	 */
+	public static boolean isOdd(int i) {
+		return i % 2 != 0;
+	}
+
 }
