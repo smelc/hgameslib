@@ -21,8 +21,8 @@ public class Lists {
 	/**
 	 * @param l
 	 * @param elem
-	 * @return {@code true} if {@code l} is empty or all its elements are equal
-	 *         to {@code elem}all its elements are equal to {@code elem}..
+	 * @return {@code true} if {@code l} is empty or all its elements are equal to
+	 *         {@code elem}all its elements are equal to {@code elem}..
 	 */
 	public static <T> boolean containsOnly(List<T> l, T elem) {
 		final int sz = l.size();
@@ -46,7 +46,18 @@ public class Lists {
 	 * @return An {@link ArrayList} containing {@code it}'s elements.
 	 */
 	public static <T> ArrayList<T> newArrayList(Iterator<? extends T> it) {
-		final ArrayList<T> result = new ArrayList<T>();
+		return Lists.newArrayList(it, -1);
+	}
+
+	/**
+	 * @param it
+	 * @param sz
+	 *            The size with which to allocate the result, or anything negative
+	 *            if unknown.
+	 * @return An {@link ArrayList} containing {@code it}'s elements.
+	 */
+	public static <T> ArrayList<T> newArrayList(Iterator<? extends T> it, int sz) {
+		final ArrayList<T> result = sz < 0 ? new ArrayList<T>() : new ArrayList<T>(sz);
 		while (it.hasNext())
 			result.add(it.next());
 		return result;
@@ -88,8 +99,8 @@ public class Lists {
 
 	/**
 	 * @param list
-	 * @return An {@link Iterator} that cycles indefinitely over {@code list}.
-	 *         Do not loop on it!
+	 * @return An {@link Iterator} that cycles indefinitely over {@code list}. Do
+	 *         not loop on it!
 	 */
 	public static <T> Iterator<T> newCyclingIterator(final List<? extends T> list) {
 		return new Iterator<T>() {
