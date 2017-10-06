@@ -146,7 +146,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		final Object[] result = new Object[size];
 		int i = 0;
 		for (T key : map.keySet()) {
-			Integer count = map.get(i);
+			Integer count = map.get(key);
 			assert count != null;
 			if (count == null)
 				continue;
