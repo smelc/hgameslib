@@ -42,6 +42,21 @@ public class Lists {
 	}
 
 	/**
+	 * @return A fresh {@link ArrayList}.
+	 */
+	public static <T> ArrayList<T> newArrayList() {
+		return new ArrayList<T>();
+	}
+
+	/**
+	 * @param expectedSize
+	 * @return A fresh {@link ArrayList}.
+	 */
+	public static <T> ArrayList<T> newArrayListWithExpectedSize(int expectedSize) {
+		return new ArrayList<T>(expectedSize);
+	}
+
+	/**
 	 * @param it
 	 * @return An {@link ArrayList} containing {@code it}'s elements.
 	 */
