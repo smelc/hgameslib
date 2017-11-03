@@ -51,6 +51,21 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 	}
 
 	/**
+	 * @param other
+	 * @param clazz
+	 * @return A fresh copy of {@code other}.
+	 */
+	public static <T extends Enum<T>> EnumMultiset<T> copyOf(EnumMultiset<T> other, Class<T> clazz) {
+		final EnumMultiset<T> result = noneOf(clazz);
+		for (T t : clazz.getEnumConstants()) {
+			final int count = other.count(t);
+			if (1 <= count)
+				result.multiAdd(t, count);
+		}
+		return result;
+	}
+
+	/**
 	 * @param t
 	 * @return The number of times {@code t} appears in {@code this}.
 	 */
