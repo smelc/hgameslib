@@ -57,4 +57,27 @@ public class Arrays {
 		return ts[y];
 	}
 
+	/**
+	 * Substitutes every occurrence of {@code inThere} by {@code novel} in
+	 * {@code array}.
+	 * 
+	 * @param array
+	 * @param inThere
+	 * @param novel
+	 * @param useEqualEqual
+	 * @return The number of replacements made.
+	 */
+	public static <T> int replaceAll(/* @Nullable */ T[] array, T inThere, T novel, boolean useEqualEqual) {
+		if (array == null)
+			return 0;
+		int result = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (Objects.equals(array[i], inThere, useEqualEqual)) {
+				array[i] = novel;
+				result++;
+			}
+		}
+		return result;
+	}
+
 }

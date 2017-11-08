@@ -13,6 +13,16 @@ public class Collections {
 
 	/**
 	 * @param collection
+	 *            A possibly null collection.
+	 * @param element
+	 * @return Whether {@code collection} contains {@code element}.
+	 */
+	public static <T> boolean contains(Collection<T> collection, T element) {
+		return collection != null && collection.contains(element);
+	}
+
+	/**
+	 * @param collection
 	 * @param searched
 	 * @return true if {@code collection} contains a member of {@code searched}.
 	 */
@@ -45,5 +55,15 @@ public class Collections {
 				return false;
 		}
 		return true;
+	}
+
+	/**
+	 * @param collection
+	 *            A possibly null collection.
+	 * @param element
+	 * @return Whether {@code collection} was modified.
+	 */
+	public static <T> boolean remove(Collection<T> collection, T element) {
+		return collection != null && collection.remove(element);
 	}
 }

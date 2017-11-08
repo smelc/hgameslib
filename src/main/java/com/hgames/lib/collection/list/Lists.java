@@ -42,6 +42,21 @@ public class Lists {
 	}
 
 	/**
+	 * Adds {@code t} {@code n} times into {@code list}.
+	 * 
+	 * @param list
+	 *            The list to extend
+	 * @param t
+	 *            The element to add
+	 * @param n
+	 *            How many times to add {@code n}.
+	 */
+	public static <T> void multiAdd(List<T> list, T t, int n) {
+		for (int i = 0; i < n; i++)
+			list.add(t);
+	}
+
+	/**
 	 * @return A fresh {@link ArrayList}.
 	 */
 	public static <T> ArrayList<T> newArrayList() {
@@ -144,6 +159,21 @@ public class Lists {
 				list.remove(cur);
 			}
 		};
+	}
+
+	/**
+	 * @param list
+	 * @return true if {@code list} doesn't contain null.
+	 */
+	public static boolean noNull(List<?> list) {
+		if (list == null)
+			return true;
+		final int sz = list.size();
+		for (int i = 0; i < sz; i++) {
+			if (list.get(i) == null)
+				return false;
+		}
+		return true;
 	}
 
 	/**

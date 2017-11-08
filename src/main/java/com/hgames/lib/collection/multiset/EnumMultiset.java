@@ -25,10 +25,15 @@ import java.util.Set;
  */
 public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializable {
 
-	/** InvariantS: all values are non-null and greater than 0 */
+	/** Invariant: all values are non-null and greater than 0 */
 	protected final EnumMap<T, Integer> map;
 	/** The sum of {@link #map}'s values. Could be transient (TODO). */
 	protected int size;
+
+	/*
+	 * I don't want to store the Class here. My guts tell me it's a bad idea (think
+	 * gwt, think weird platform, think text saves).
+	 */
 
 	private static final long serialVersionUID = -3597349071602560131L;
 
