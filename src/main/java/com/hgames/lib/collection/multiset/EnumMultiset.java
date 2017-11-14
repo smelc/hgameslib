@@ -265,6 +265,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 			if (0 == v)
 				continue;
 			map.remove(next);
+			size -= v;
 			change |= true;
 		}
 		return change;
@@ -272,6 +273,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 
 	@Override
 	public void clear() {
+		size = 0;
 		map.clear();
 	}
 

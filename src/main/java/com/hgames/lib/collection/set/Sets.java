@@ -13,6 +13,13 @@ import java.util.Set;
 public class Sets {
 
 	/**
+	 * @return A fresh set.
+	 */
+	public static <T> HashSet<T> newHashSet() {
+		return new HashSet<T>();
+	}
+
+	/**
 	 * @param iterator
 	 * @param size
 	 *            {@code iterator}'s size if known, otherwise anything negative.

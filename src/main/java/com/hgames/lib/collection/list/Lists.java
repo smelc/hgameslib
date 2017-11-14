@@ -72,6 +72,14 @@ public class Lists {
 	}
 
 	/**
+	 * @param elems
+	 * @return An {@link ArrayList} containing {@code elems}
+	 */
+	public static <T> ArrayList<T> newArrayList(Collection<? extends T> elems) {
+		return new ArrayList<T>(elems);
+	}
+
+	/**
 	 * @param it
 	 * @return An {@link ArrayList} containing {@code it}'s elements.
 	 */
