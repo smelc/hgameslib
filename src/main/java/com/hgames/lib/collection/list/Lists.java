@@ -56,9 +56,7 @@ public class Lists {
 			list.add(t);
 	}
 
-	/**
-	 * @return A fresh {@link ArrayList}.
-	 */
+	/** @return A fresh {@link ArrayList}. */
 	public static <T> ArrayList<T> newArrayList() {
 		return new ArrayList<T>();
 	}
@@ -111,6 +109,11 @@ public class Lists {
 		result.add(t1);
 		result.add(t2);
 		return result;
+	}
+
+	/** @return A fresh {@link LinkedList}. */
+	public static <T> LinkedList<T> newLinkedList() {
+		return new LinkedList<T>();
 	}
 
 	/**

@@ -210,6 +210,16 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		return true;
 	}
 
+	/**
+	 * Reduces {@code t}'s count by 1.
+	 * 
+	 * @param t
+	 * @return Whether {@code t} was present.
+	 */
+	public boolean removeOne(T t) {
+		return remove(t);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean remove(Object o) {

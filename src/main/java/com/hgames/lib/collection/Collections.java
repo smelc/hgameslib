@@ -66,4 +66,13 @@ public class Collections {
 	public static <T> boolean remove(Collection<T> collection, T element) {
 		return collection != null && collection.remove(element);
 	}
+
+	/**
+	 * @param collection
+	 *            A possibly null collection.
+	 * @return {@code collection}'s size
+	 */
+	public static int size(Collection<?> collection) {
+		return collection == null ? 0 : collection.size();
+	}
 }
