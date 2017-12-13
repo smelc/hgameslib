@@ -9,6 +9,21 @@ public class Arrays {
 
 	/**
 	 * @param ts
+	 * @return Whether {@code ts} contains only null elements. false if {@code ts}
+	 *         itself is null.
+	 */
+	public static <T> boolean allNull(T[] ts) {
+		if (ts == null)
+			return false;
+		for (int i = 0; i < ts.length; i++) {
+			if (ts[i] != null)
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * @param ts
 	 * @return Whether {@code ts} contains a null element. false if {@code ts}
 	 *         itself is null.
 	 */
