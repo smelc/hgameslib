@@ -1,5 +1,7 @@
 package com.hgames.lib;
 
+import java.util.Collection;
+
 /**
  * Utility methods pertaining to arrays.
  * 
@@ -66,6 +68,25 @@ public class Arrays {
 				return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @param ts
+	 * @param collection
+	 * @param useEqualEqual
+	 * @return true if {@code ts} contains all members of {@code collection}.
+	 */
+	public static <T> boolean containsAll(/* @Nullable */ T[] ts, Collection<T> collection, boolean useEqualEqual) {
+		final boolean emptyCollection = collection == null || collection.isEmpty();
+		if (ts == null)
+			return emptyCollection;
+		if (emptyCollection)
+			return true;
+		for (T t : collection) {
+			if (!contains(ts, t, useEqualEqual))
+				return false;
+		}
+		return true;
 	}
 
 	/**

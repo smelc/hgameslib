@@ -12,6 +12,17 @@ import java.util.Set;
 public class Collections {
 
 	/**
+	 * Clears {@code collection} if not null.
+	 * 
+	 * @param collection
+	 *            A possible null collection.
+	 */
+	public static void clear(/* @Nullable */ Collection<?> collection) {
+		if (collection != null)
+			collection.clear();
+	}
+
+	/**
 	 * @param collection
 	 *            A possibly null collection.
 	 * @param element

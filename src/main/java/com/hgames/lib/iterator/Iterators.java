@@ -62,6 +62,37 @@ public class Iterators {
 	}
 
 	/**
+	 * @param array
+	 * @return An iterator over {@code array}.
+	 */
+	public static <T> Iterator<T> of(final T[] array) {
+		return new Iterator<T>() {
+
+			int next = 0;
+
+			@Override
+			public boolean hasNext() {
+				return next < array.length;
+			}
+
+			@Override
+			public T next() {
+				if (hasNext()) {
+					final T result = array[next];
+					next++;
+					return result;
+				} else
+					throw new NoSuchElementException();
+			}
+
+			@Override
+			public void remove() {
+				throw new UnsupportedOperationException();
+			}
+		};
+	}
+
+	/**
 	 * @param it
 	 * @return The number of elements in {@code it}.
 	 */
@@ -77,8 +108,7 @@ public class Iterators {
 	/**
 	 * @param it
 	 * @param expectedSize
-	 *            The expected size of the result or something negative if
-	 *            unknown.
+	 *            The expected size of the result or something negative if unknown.
 	 * @return {@code it}'s elements as an {@link ArrayList}.
 	 */
 	public static <T> ArrayList<T> toList(Iterator<T> it, int expectedSize) {
@@ -91,8 +121,7 @@ public class Iterators {
 	/**
 	 * @param it
 	 * @param expectedSize
-	 *            The expected size of the result or something negative if
-	 *            unknown.
+	 *            The expected size of the result or something negative if unknown.
 	 * @return {@code it}'s elements as a {@link Set}.
 	 */
 	public static <T> HashSet<T> toSet(Iterator<T> it, int expectedSize) {

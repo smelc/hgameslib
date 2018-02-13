@@ -208,8 +208,7 @@ public final class ImmutableIColor extends SkeletalColor {
 	 *            The weight of {@code r} in the mean.
 	 * @return The weighted mean of {@code l} and {@code r}.
 	 */
-	public static IColor weightedMean(/* @Nullable */ IColor l, int lweight, /* @Nullable */ IColor r,
-			int rweight) {
+	public static IColor weightedMean(/* @Nullable */ IColor l, int lweight, /* @Nullable */ IColor r, int rweight) {
 		if (l == null)
 			return r;
 		if (r == null)
@@ -228,13 +227,23 @@ public final class ImmutableIColor extends SkeletalColor {
 	 * @param g
 	 * @param b
 	 * @param alpha
-	 * @return The color {@code c} to which r, g, b, and alpha were pointwise
-	 *         added.
+	 * @return The color {@code c} to which r, g, b, and alpha were pointwise added.
 	 */
 	public static IColor clampedAddition(IColor c, int r, int g, int b, int alpha) {
-		return new ImmutableIColor(Colors.clampComponent(c.getRed() + r),
-				Colors.clampComponent(c.getGreen() + g), Colors.clampComponent(c.getBlue() + b),
-				Colors.clampComponent(c.getAlpha() + alpha));
+		return new ImmutableIColor(Colors.clampComponent(c.getRed() + r), Colors.clampComponent(c.getGreen() + g),
+				Colors.clampComponent(c.getBlue() + b), Colors.clampComponent(c.getAlpha() + alpha));
+	}
+
+	/**
+	 * @param c
+	 * @param r
+	 * @param g
+	 * @param b
+	 * @return The color {@code c} to which r, g, b and alpha were pointwise added.
+	 */
+	public static IColor clampedAlphaLessAddition(IColor c, int r, int g, int b) {
+		return new ImmutableIColor(Colors.clampComponent(c.getRed() + r), Colors.clampComponent(c.getGreen() + g),
+				Colors.clampComponent(c.getBlue() + b), c.getAlpha());
 	}
 
 	/**
