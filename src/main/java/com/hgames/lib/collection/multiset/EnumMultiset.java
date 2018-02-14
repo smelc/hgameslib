@@ -87,14 +87,79 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 	}
 
 	/**
-	 * Adds {@code t} {@code count} times.
+	 * Adds {@code t} {@code count} times (can be negative).
 	 * 
 	 * @param t
 	 * @param count
+	 * @return Whether {@code this} changed.
 	 */
-	public void multiAdd(T t, int count) {
-		for (int i = 0; i < count; i++)
-			add(t);
+	public boolean multiAdd(T t, int count) {
+		if (count == 0)
+			/* Nothing to do */
+			return false;
+		if (count < 0)
+			/* It's a removal */
+			return multiRemove(t, -count);
+		if (t == null)
+			throw new NullPointerException();
+		assert 0 < count;
+		final Integer inThere = map.get(t);
+		map.put(t, count + (inThere == null ? 0 : inThere));
+		size += count;
+		assert invariant();
+		return true;
+	}
+
+	/**
+	 * Removes {@code t} {@code count} times.
+	 * 
+	 * @param t
+	 * @param count
+	 * @return Whether {@code this} changed.
+	 */
+	public boolean multiRemove(T t, int count) {
+		if (count == 0)
+			/* Nothing to do */
+			return false;
+		if (count < 0)
+			/* It's an addition */
+			return multiAdd(t, -count);
+		if (t == null)
+			throw new NullPointerException();
+		assert 0 < count;
+		final Integer inThere = map.get(t);
+		if (inThere == null)
+			/* Removing an element that isn't there */
+			return false;
+		else {
+			final int newCount = inThere - count;
+			if (newCount <= 0) {
+				/* Removing exactly the amount that was there, or more */
+				map.remove(t);
+				size -= inThere;
+			} else {
+				assert 0 < newCount;
+				map.put(t, newCount);
+				size -= inThere;
+				size += count;
+			}
+			assert invariant();
+			return true;
+		}
+	}
+
+	/**
+	 * Removes {@code other} from {@code this}.
+	 * 
+	 * @param other
+	 * @return Whether {@code this} changed.
+	 */
+	public boolean minus(EnumMultiset<T> other) {
+		boolean change = false;
+		for (T oKey : other.keySet()) {
+			change |= multiRemove(oKey, other.count(oKey));
+		}
+		return change;
 	}
 
 	@Override
@@ -207,6 +272,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		else
 			map.put(e, count + 1);
 		size++;
+		assert invariant();
 		return true;
 	}
 
@@ -234,6 +300,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		else
 			map.put((T) o, less);
 		size--;
+		assert invariant();
 		return true;
 	}
 
@@ -251,6 +318,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		boolean result = false;
 		for (T t : c)
 			result |= add(t);
+		assert invariant();
 		return result;
 	}
 
@@ -259,6 +327,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		boolean result = false;
 		for (Object t : c)
 			result |= remove(t);
+		assert invariant();
 		return result;
 	}
 
@@ -278,6 +347,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 			size -= v;
 			change |= true;
 		}
+		assert invariant();
 		return change;
 	}
 
@@ -285,6 +355,20 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 	public void clear() {
 		size = 0;
 		map.clear();
+		assert invariant();
+	}
+
+	protected boolean invariant() {
+		int sz = 0;
+		for (T key : map.keySet()) {
+			final Integer count = map.get(key);
+			if (count == null)
+				return false;
+			if (count <= 0)
+				return false;
+			sz += count;
+		}
+		return sz == size;
 	}
 
 	@Override
