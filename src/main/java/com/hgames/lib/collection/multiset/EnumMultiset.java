@@ -162,6 +162,20 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		return change;
 	}
 
+	/**
+	 * Add {@code other} from {@code this}.
+	 * 
+	 * @param other
+	 * @return Whether {@code this} changed.
+	 */
+	public boolean union(EnumMultiset<T> other) {
+		boolean change = false;
+		for (T oKey : other.keySet()) {
+			change |= multiAdd(oKey, other.count(oKey));
+		}
+		return change;
+	}
+
 	@Override
 	public int size() {
 		return size;

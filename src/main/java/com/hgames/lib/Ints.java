@@ -45,4 +45,13 @@ public class Ints {
 		return i % 2 != 0;
 	}
 
+	/**
+	 * @param fraction
+	 * @param total
+	 * @return The percent that {@code fraction} represents on {@code total}.
+	 */
+	public static int percent(int fraction, int total) {
+		return total == 0 ? 0 : (fraction * 100) / total;
+	}
+
 }
