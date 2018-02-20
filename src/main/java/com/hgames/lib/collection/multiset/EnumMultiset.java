@@ -141,7 +141,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 				assert 0 < newCount;
 				map.put(t, newCount);
 				size -= inThere;
-				size += count;
+				size += newCount;
 			}
 			assert invariant();
 			return true;
