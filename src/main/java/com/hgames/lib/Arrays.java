@@ -109,6 +109,19 @@ public class Arrays {
 	}
 
 	/**
+	 * Adds all elements of {@code ts} into {@code acc}.
+	 * 
+	 * @param ts
+	 * @param acc
+	 */
+	public static <T> void pourInto(/* @Nullable */ T[] ts, Collection<T> acc) {
+		if (ts == null)
+			return;
+		for (int i = 0; i < ts.length; i++)
+			acc.add(ts[i]);
+	}
+
+	/**
 	 * Substitutes every occurrence of {@code inThere} by {@code novel} in
 	 * {@code array}.
 	 * 

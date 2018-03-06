@@ -1,6 +1,7 @@
 package com.hgames.lib.iterator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -90,6 +91,26 @@ public class Iterators {
 				throw new UnsupportedOperationException();
 			}
 		};
+	}
+
+	/**
+	 * Adds at most {@code nb} elements from {@code it} into {@code acc}.
+	 * 
+	 * @param it
+	 *            The iterator to consume
+	 * @param acc
+	 *            Where to add
+	 * @param nb
+	 *            The maximum number of elements to add
+	 * @return The number of elements poured. Less or equal than {@code nb}.
+	 */
+	public static <T> int pourInto(Iterator<T> it, Collection<T> acc, int nb) {
+		int result = 0;
+		while (it.hasNext() && result < nb) {
+			acc.add(it.next());
+			result++;
+		}
+		return result;
 	}
 
 	/**

@@ -86,4 +86,13 @@ public class Collections {
 	public static int size(Collection<?> collection) {
 		return collection == null ? 0 : collection.size();
 	}
+
+	/**
+	 * @param small
+	 * @param big
+	 * @return Whether small is included in {@code big}.
+	 */
+	public static <T> boolean subset(/* @Nullable */ Collection<T> small, Collection<T> big) {
+		return small == null || big.containsAll(small);
+	}
 }
