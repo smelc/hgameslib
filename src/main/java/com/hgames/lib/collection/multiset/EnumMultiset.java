@@ -396,7 +396,8 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 			assert count != null && 0 < count;
 			if (count == null || 0 == count)
 				continue;
-			result.append(" ");
+			if (1 < result.length())
+				result.append(" ");
 			result.append(next.toString());
 			result.append("->");
 			result.append(count);

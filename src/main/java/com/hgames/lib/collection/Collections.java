@@ -51,7 +51,11 @@ public class Collections {
 	 * @return true if {@code c1} and {@code c2} are equivalent according to
 	 *         {@link Collection#containsAll(Collection)}.
 	 */
-	public static <T> boolean equivalent(Collection<T> c1, Collection<T> c2) {
+	public static <T> boolean equivalent(/* @Nullable */ Collection<T> c1, /* @Nullable */ Collection<T> c2) {
+		if (c1 == null)
+			return c2 == null || c2.isEmpty();
+		if (c2 == null)
+			return c1 == null || c1.isEmpty();
 		return c1.size() == c2.size() && c1.containsAll(c2) && c2.containsAll(c1);
 	}
 

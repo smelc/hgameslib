@@ -224,6 +224,19 @@ public class Lists {
 	}
 
 	/**
+	 * <b>Destroys {@code q}.</b>
+	 * 
+	 * @param q
+	 * @return A copy of {@code q}.
+	 */
+	public static <T> LinkedList<T> toLinkedList(Queue<T> q) {
+		final LinkedList<T> result = new LinkedList<T>();
+		while (!q.isEmpty())
+			result.add(q.remove());
+		return result;
+	}
+
+	/**
 	 * @param l
 	 * @param toRemove
 	 *            The indexes to remove in {@code l}.
