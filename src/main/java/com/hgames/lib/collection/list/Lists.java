@@ -282,8 +282,12 @@ public class Lists {
 			return 0;
 		int result = 0;
 		for (Integer i : toRemove) {
-			l.remove(i - result);
-			result++;
+			if (i == null)
+				assert false;
+			else {
+				l.remove(i.intValue() - result);
+				result++;
+			}
 		}
 		return result;
 	}

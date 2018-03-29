@@ -16,12 +16,12 @@ public class IterablesTest {
 	 */
 	public static void main(String[] args) {
 		final List<Integer> unDeux = new ArrayList<Integer>();
-		unDeux.add(1);
-		unDeux.add(2);
+		unDeux.add(Integer.valueOf(1));
+		unDeux.add(Integer.valueOf(2));
 		final List<Integer> troisQuatreCing = new ArrayList<Integer>();
-		unDeux.add(3);
-		unDeux.add(4);
-		unDeux.add(5);
+		unDeux.add(Integer.valueOf(3));
+		unDeux.add(Integer.valueOf(4));
+		unDeux.add(Integer.valueOf(5));
 		final List<List<Integer>> ll = Lists.newArrayList();
 		ll.add(unDeux);
 		ll.add(troisQuatreCing);

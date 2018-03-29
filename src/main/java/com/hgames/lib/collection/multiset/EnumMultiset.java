@@ -76,7 +76,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 	 */
 	public int count(T t) {
 		final Integer value = map.get(t);
-		return value == null ? 0 : value;
+		return value == null ? 0 : value.intValue();
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 			throw new NullPointerException();
 		assert 0 < count;
 		final Integer inThere = map.get(t);
-		map.put(t, count + (inThere == null ? 0 : inThere));
+		map.put(t, Integer.valueOf(count + (inThere == null ? 0 : inThere.intValue())));
 		size += count;
 		assert invariant();
 		return true;
@@ -132,15 +132,16 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 			/* Removing an element that isn't there */
 			return false;
 		else {
-			final int newCount = inThere - count;
+			final int inThereInt = inThere.intValue();
+			final int newCount = inThereInt - count;
 			if (newCount <= 0) {
 				/* Removing exactly the amount that was there, or more */
 				map.remove(t);
-				size -= inThere;
+				size -= inThereInt;
 			} else {
 				assert 0 < newCount;
-				map.put(t, newCount);
-				size -= inThere;
+				map.put(t, Integer.valueOf(newCount));
+				size -= inThereInt;
 				size += newCount;
 			}
 			assert invariant();
@@ -191,8 +192,8 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		final Integer count = map.get(o);
 		if (count == null)
 			return false;
-		assert 0 < count;
-		return 0 < count;
+		assert 0 < count.intValue();
+		return 0 < count.intValue();
 	}
 
 	@Override
@@ -249,10 +250,11 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 			assert count != null;
 			if (count == null)
 				continue;
-			assert 0 < count;
-			while (0 < count) {
+			int icount = count.intValue();
+			assert 0 < icount;
+			while (0 < icount) {
 				result[i++] = key;
-				count--;
+				icount--;
 			}
 		}
 		return result;
@@ -281,10 +283,7 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		if (e == null)
 			throw new NullPointerException();
 		final Integer count = map.get(e);
-		if (count == null)
-			map.put(e, 1);
-		else
-			map.put(e, count + 1);
+		map.put(e, Integer.valueOf(count == null ? 1 : count.intValue() + 1));
 		size++;
 		assert invariant();
 		return true;
@@ -306,13 +305,14 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		final Integer count = map.get(o);
 		if (count == null)
 			return false;
-		if (count == 0)
+		final int icount = count.intValue();
+		if (icount == 0)
 			return false;
-		final Integer less = count - 1;
+		final int less = icount - 1;
 		if (less == 0)
 			map.remove(o);
 		else
-			map.put((T) o, less);
+			map.put((T) o, Integer.valueOf(less));
 		size--;
 		assert invariant();
 		return true;
@@ -354,11 +354,12 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 			Integer v = map.get(next);
 			if (v == null)
 				continue;
-			assert 0 < v;
-			if (0 == v)
+			final int vint = v.intValue();
+			assert 0 < vint;
+			if (0 == vint)
 				continue;
 			map.remove(next);
-			size -= v;
+			size -= vint;
 			change |= true;
 		}
 		assert invariant();
@@ -378,9 +379,10 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 			final Integer count = map.get(key);
 			if (count == null)
 				return false;
-			if (count <= 0)
+			final int icount = count.intValue();
+			if (icount <= 0)
 				return false;
-			sz += count;
+			sz += icount;
 		}
 		return sz == size;
 	}
@@ -392,9 +394,9 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 		final Iterator<T> it = keySet().iterator();
 		while (it.hasNext()) {
 			final T next = it.next();
-			final Integer count = count(next);
-			assert count != null && 0 < count;
-			if (count == null || 0 == count)
+			final int count = count(next);
+			assert 0 < count;
+			if (0 == count)
 				continue;
 			if (1 < result.length())
 				result.append(" ");
