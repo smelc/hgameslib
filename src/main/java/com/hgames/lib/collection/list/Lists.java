@@ -19,6 +19,22 @@ import com.hgames.lib.GwtIncompatible;
 public class Lists {
 
 	/**
+	 * @param collection
+	 * @param searched
+	 * @return true if {@code collection} contains a member of {@code searched}.
+	 */
+	public static <T> boolean containsAny(Collection<T> collection, /* @Nullable */ List<T> searched) {
+		if (collection == null)
+			return false;
+		final int sz = searched.size();
+		for (int i = 0; i < sz; i++) {
+			if (collection.contains(searched.get(i)))
+				return true;
+		}
+		return false;
+	}
+
+	/**
 	 * @param l
 	 * @param elem
 	 * @return {@code true} if {@code l} is empty or all its elements are equal to
