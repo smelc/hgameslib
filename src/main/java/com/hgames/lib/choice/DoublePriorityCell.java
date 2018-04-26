@@ -29,7 +29,7 @@ public class DoublePriorityCell<T> extends AbstractPriorityCell<T> {
 	 * @param object
 	 *            The contained object.
 	 * @param priority
-	 *            {@code object}'s priority. Must be >= 0.
+	 *            {@code object}'s priority. Must be {@code >= 0}.
 	 */
 	public DoublePriorityCell(/* @Nullable */ T object, double priority) {
 		super(object);

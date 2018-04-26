@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class Sum<T, U> {
 
-	/** Keeping a boolean instead of a Class<?> */
+	/** Keeping a boolean instead of a {@code Class<?>} */
 	protected final boolean isLeft;
 	protected final Object delegate;
 

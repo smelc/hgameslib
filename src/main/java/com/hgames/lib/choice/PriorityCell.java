@@ -27,7 +27,7 @@ public final class PriorityCell<T> extends AbstractPriorityCell<T> {
 	 * @param object
 	 *            The contained object.
 	 * @param priority
-	 *            {@code object}'s priority. Must be >= 0.
+	 *            {@code object}'s priority. Must be {@code >= 0}.
 	 */
 	public PriorityCell(/* @Nullable */ T object, int priority) {
 		super(object);
