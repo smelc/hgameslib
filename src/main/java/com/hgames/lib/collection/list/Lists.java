@@ -72,6 +72,22 @@ public class Lists {
 			list.add(t);
 	}
 
+	/**
+	 * @param list
+	 * @return The number of non null elements.
+	 */
+	public static int nbNonNull(/* @Nullable */ List<?> list) {
+		if (list == null)
+			return 0;
+		int result = 0;
+		final int sz = list.size();
+		for (int i = 0; i < sz; i++) {
+			if (list.get(i) != null)
+				result++;
+		}
+		return result;
+	}
+
 	/** @return A fresh {@link ArrayList}. */
 	public static <T> ArrayList<T> newArrayList() {
 		return new ArrayList<T>();

@@ -2,6 +2,7 @@ package com.hgames.lib;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Utility methods pertaining to {@link String}s.
@@ -28,6 +29,29 @@ public class Strings {
 			while (it.hasNext()) {
 				builder.append(it.next().toString());
 				if (it.hasNext())
+					builder.append(joiner);
+			}
+			return builder.toString();
+		}
+	}
+
+	/**
+	 * @param list
+	 * @param joiner
+	 * @return {@code operands[0] + joiner + ... + operands[operands.size() - 1]}
+	 */
+	public static String joinStringList(List<String> list, String joiner) {
+		final int sz = list.size();
+		switch (sz) {
+		case 0:
+			return "";
+		case 1:
+			return list.get(0).toString();
+		default:
+			final StringBuilder builder = new StringBuilder(sz * 8);
+			for (int i = 0; i < sz; i++) {
+				builder.append(list.get(i));
+				if (i < sz - 1)
 					builder.append(joiner);
 			}
 			return builder.toString();
