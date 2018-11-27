@@ -109,6 +109,21 @@ public class Arrays {
 	}
 
 	/**
+	 * @param array
+	 * @param x
+	 * @param y
+	 * @return Whether {@code (x, y)} is valid in {@code array}
+	 */
+	public static boolean isValid(/* @Nullable */ boolean[][] array, int x, int y) {
+		if (array == null) return false;
+		if (x < 0 || array.length <= x) return false;
+		final boolean[] ts = array[x];
+		if (ts == null) return false;
+		if (y < 0 || ts.length <= y) return false;
+		return true;
+	}
+
+	/**
 	 * Adds all elements of {@code ts} into {@code acc}.
 	 * 
 	 * @param ts

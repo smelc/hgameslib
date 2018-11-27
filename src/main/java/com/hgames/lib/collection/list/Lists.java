@@ -323,4 +323,18 @@ public class Lists {
 		}
 		return result;
 	}
+
+	/**
+	 * @param list
+	 * @return The sum of members of {@code list}
+	 */
+	public static short sum(List<Short> list) {
+		short result = 0;
+		if (list != null) {
+			final int sz = list.size();
+			for (int i = 0; i < sz; i++)
+				result += list.get(i).shortValue();
+		}
+		return result;
+	}
 }

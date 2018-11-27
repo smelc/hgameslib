@@ -71,6 +71,20 @@ public class EnumMultiset<T extends Enum<T>> implements Collection<T>, Serializa
 	}
 
 	/**
+	 * @param clazz
+	 * @param t
+	 * @param count
+	 * @return A multiset initialised with {@code count} for {@code t}
+	 */
+	public static <T extends Enum<T>> EnumMultiset<T> of(Class<T> clazz, T t, int count) {
+		if (count < 0)
+			throw new IllegalStateException("count must be positive");
+		final EnumMultiset<T> result = noneOf(clazz);
+		result.multiAdd(t, count);
+		return result;
+	}
+
+	/**
 	 * @param t
 	 * @return The number of times {@code t} appears in {@code this}.
 	 */
